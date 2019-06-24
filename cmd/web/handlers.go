@@ -122,7 +122,7 @@ func (app *application) createUser(w http.ResponseWriter, r *http.Request) {
 
 	request := requests.New(*user)
 	// Check the required fields of body request
-	request.Required("FirstName", "LastName", "CPF", "Email")
+	request.Required("FirstName", "LastName", "CPF", "Email", "Password")
 	request.MatchesPattern("Email", requests.EmailRX)
 
 	if !request.Valid() {
