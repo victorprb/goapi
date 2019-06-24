@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+  api:
+    hostname: goapi
+    build: .
+    container_name: goapi
+    ports:
+      - '8080:8080'
+    command: [
+      "-secret=my_secret_key",
+      "-dbhost=db",
+    ]
+    depends_on:
+      - db
+
   db:
     hostname: postgres
     image: postgres:11
@@ -13,7 +26,8 @@ services:
       - 5432:5432
     volumes:
       - ./scripts/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
-      - pgdata:/var/łib/postgresql/data
+      - ./scripts/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:
