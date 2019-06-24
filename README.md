@@ -2,6 +2,9 @@
 
 A simple Go API server
 
+## Usage
+`$ ./web -addr=:8080 -dbhost=postgres -dbuser=postgres -dbpass=postgres -dbname=postgres -secret=my_server_secret_key
+
 ## Setup
 For init a test env of the App:
 `$ docker-compose up -d --build`
